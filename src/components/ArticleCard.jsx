@@ -1,14 +1,15 @@
+import { Link } from "react-router-dom";
+
 function ArticleCard({ article }) {
-    return (
+  return (
+    <Link to={`/articles/${article.article_id}`}>
       <div className="article-card">
-        <h2>{article.title}</h2>
-        <p>
-          🧑 {article.author} | 🏷️ {article.topic} | 💬 {article.comment_count} | 👍 {article.votes}
-        </p>
-        <p>{new Date(article.created_at).toLocaleDateString()}</p>
+        <h3>{article.title}</h3>
+        <p>By {article.author} | 💬 {article.comment_count} | 👍 {article.votes}</p>
       </div>
-    );
-  }
-  
-  export default ArticleCard;
+    </Link>
+  );
+}
+
+export default ArticleCard;
   
