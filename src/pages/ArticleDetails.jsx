@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById, getCommentsByArticleId  } from "../utils/api";
 import CommentCard from "../components/CommentCard";
+import { patchArticleVotes } from "../utils/api";
+
 
 
 function ArticleDetails() {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState([]);
+  const [voteChange, setVoteChange] = useState(0);
+  const [error, setError] = useState(null);
+
 
  
 
@@ -33,6 +38,18 @@ function ArticleDetails() {
 
   if (!article) return <p>Loading article...</p>;
 
+  const handleVote = (amount) => {
+    setVoteChange((curr) => curr + amount); 
+    setError(null);
+  
+    patchArticleVotes(article_id, amount).catch(() => {
+      setVoteChange((curr) => curr - amount); 
+      setError("Failed to update vote. Try again.");
+    });
+  };
+  
+  
+  
   return (
     <>
       <article>
@@ -41,7 +58,13 @@ function ArticleDetails() {
           By {article.author} | Topic: {article.topic} | 🗓 {new Date(article.created_at).toLocaleDateString()}
         </p>
         <p>{article.body}</p>
-        <p>👍 {article.votes} votes</p>
+        <p>👍 {article.votes + voteChange} votes</p>
+        <div>
+            <button onClick={() => handleVote(1)}>⬆️ Upvote</button>
+            <button onClick={() => handleVote(-1)}>⬇️ Downvote</button>
+        </div>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
       </article>
       <section>
         <h3>Comments</h3>
