@@ -8,7 +8,10 @@ function Home() {
   useEffect(() => {
     getArticles().then(({ data }) => {
       setArticles(data.articles);
-    });
+    })
+    .catch((err) => {
+        console.error("Error fetching articles:", err);
+  });
   }, []);
 
   return (
