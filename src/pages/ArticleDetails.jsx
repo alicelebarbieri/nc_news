@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById, getCommentsByArticleId  } from "../utils/api";
 import CommentCard from "../components/CommentCard";
+import CommentForm from "../components/CommentForm";
 import { patchArticleVotes } from "../utils/api";
+
 
 
 
@@ -66,6 +68,7 @@ function ArticleDetails() {
         {error && <p style={{ color: "red" }}>{error}</p>}
 
       </article>
+        <CommentForm article_id={article_id} setComments={setComments} />
       <section>
         <h3>Comments</h3>
         {comments.length === 0 ? (
