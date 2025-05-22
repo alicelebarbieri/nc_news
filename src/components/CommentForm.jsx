@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { postComment } from "../utils/api";
+import UserContext from "../context/UserContext";
+
 
 function CommentForm({ article_id, setComments }) {
-  const [username, setUsername] = useState(""); 
+  const username = useContext(UserContext);
   const [body, setBody] = useState("");
   const [isPosting, setIsPosting] = useState(false);
   const [error, setError] = useState(null);
@@ -19,29 +21,28 @@ function CommentForm({ article_id, setComments }) {
     setError(null);
 
     postComment(article_id, { username, body })
-      .then(({ data }) => {
-        setComments((curr) => [data.comment, ...curr]); 
+    .then(({ data }) => {
+      if (data.comment) {
+        setComments((curr) => [data.comment, ...curr]);
         setBody("");
-        setUsername("");
-      })
-      .catch(() => {
-        setError("Failed to post comment.");
-      })
-      .finally(() => {
-        setIsPosting(false);
-      });
-  };
+        setError(null);
+      } else {
+        setError("Unexpected response from server.");
+      }
+    })
+    .catch((err) => {
+      console.error("Post failed:", err);
+      setError("Failed to post comment.");
+    })
+    .finally(() => {
+      setIsPosting(false);
+    });
+  }
 
   return (
     <form onSubmit={handleSubmit}>
       <h4>Leave a comment</h4>
-      <input
-        type="text"
-        placeholder="Your username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        disabled={isPosting}
-      />
+      
       <br />
       <textarea
         placeholder="Your comment"
