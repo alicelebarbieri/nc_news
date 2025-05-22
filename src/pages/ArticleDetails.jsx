@@ -75,7 +75,11 @@ function ArticleDetails() {
           <p>No comments yet.</p>
         ) : (
           comments.map((comment) => (
-            <CommentCard key={comment.comment_id} comment={comment} />
+            <CommentCard
+              key={comment.comment_id}
+              comment={comment}
+              setComments={setComments}
+            />
           ))
         )}
       </section>
