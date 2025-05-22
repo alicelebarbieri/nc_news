@@ -12,4 +12,5 @@ function ArticleCard({ article }) {
 }
 
 export default ArticleCard;
+
   
