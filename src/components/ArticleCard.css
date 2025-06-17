@@ -1,0 +1,76 @@
+.article-card {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 220px;
+}
+
+.article-card:hover {
+  transform: scale(1.02);
+  background-color: #e6f4ea;
+}
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.article-card h3 {
+  margin: 0 8px 0;
+  font-size: 18px;
+  color: #2a7d46;
+  text-align: center;
+}
+
+.article-card p {
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.topic-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.topic-button {
+  background-color: #2a7d46;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+.topics-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.topic-button:hover {
+  background-color: #256c3d;
+}
+.article-img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+main h1 {
+  color: #2a7d46; 
+  text-align: center;
+  margin-bottom: 12px;
+}

@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://be-nc-news-example-46vu.onrender.com/api",
+  baseURL: "http://localhost:9090/api",
 });
 
-export const getArticles = () => {
-  return API.get("/articles");
+export const getArticles = (params = {}) => {
+  return API.get("/articles", { params });
 };
 
 export const getArticleById = (id) => {
@@ -23,4 +23,7 @@ export const patchArticleVotes = (article_id, vote) => {
 };
 export const deleteCommentById = (comment_id) => {
     return API.delete(`/comments/${comment_id}`);
-  }; 
+}; 
+export const getArticlesByTopic = (topic, params = {}) => {
+    return API.get(`/articles?topic=${topic}`, { params });
+};
