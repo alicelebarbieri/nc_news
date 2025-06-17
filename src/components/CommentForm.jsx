@@ -27,7 +27,7 @@ function CommentForm({ article_id, setComments }) {
         setBody("");
         setError(null);
       } else {
-        setError("Unexpected response from server.");
+        setError("Failed to post comment.");
       }
     })
     .catch((err) => {

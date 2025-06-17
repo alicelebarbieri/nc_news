@@ -34,7 +34,7 @@ function ArticleDetails() {
         setArticle(data.article);
       })
       .catch((err) => {
-        console.error("Error fetching article:", err);
+        setError("Article not found");
       });
   }, [article_id]);
 
