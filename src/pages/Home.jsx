@@ -3,7 +3,13 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../utils/api";
 import ArticleCard from "../components/ArticleCard";
 import { useSearchParams } from "react-router-dom";
-
+import { Container,
+  Row,
+  Col,
+  Button,
+  ButtonGroup,
+  Form,
+} from "react-bootstrap";
 
 function Home() {
   const [articles, setArticles] = useState([]);
@@ -32,55 +38,45 @@ function Home() {
   }, [sortBy, order]);
 
   return (
-    <main>
-      <nav>
-        <h3>Topics</h3>
-        <div className="topics-buttons">
-            {["coding", "football", "cooking"].map((topic) => (
-                <li key={topic}>
-                    <Link to={`/topics/${topic}`} key={topic} className="topic-button">
-                    {topic}
-                    </Link> 
-                </li>
-            ))}
-        </div>
-      </nav>
-        <div>
-          <h1>Welcome to the News App</h1>
+    <Container className="py-4">
+      <Row className="mb-4 text-center">
+        
+      </Row>
+
+      <Row>
+        <Col>
+          <h1 className="text-center">Welcome to the News App</h1>
           <h2>All Articles</h2>
-          <div className="sort-controls">
-            <label>
-              Sort by:
-              <select value={sortBy} onChange={handleSortChange}>
-                <option value="date">Date</option>
+
+          <Form className="d-flex gap-3 mb-3">
+            <Form.Group>
+              <Form.Label>Sort by:</Form.Label>
+              <Form.Select value={sortBy} onChange={handleSortChange}>
+                <option value="created_at">Date</option>
                 <option value="votes">Votes</option>
                 <option value="comment_count">Comments</option>
-              </select>
-            </label>
-          <label>
-            Sort by: {" "}
-            <select value={sortBy} onChange={handleSortChange}>
-              <option value="date">Date</option>
-              <option value="votes">Votes</option>
-              <option value="comment_count">Comments</option>
-            </select>
-          </label>
+              </Form.Select>
+            </Form.Group>
 
-          <label>
-            Order:{" "}
-            <select value={order} onChange={handleOrderChange}>
-              <option value="asc">Ascending</option>
-              <option value="desc">Descending</option>
-            </select>
-          </label>
-          <div className="articles-grid">
+            <Form.Group>
+              <Form.Label>Order:</Form.Label>
+              <Form.Select value={order} onChange={handleOrderChange}>
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+              </Form.Select>
+            </Form.Group>
+          </Form>
+
+          <Row xs={1} md={2} lg={3} className="g-4">
             {articles.map((article) => (
-              <ArticleCard key={article.article_id} article={article} />
+              <Col key={article.article_id}>
+                <ArticleCard article={article} />
+              </Col>
             ))}
-          </div>
-        </div>
-        </div>
-    </main>
+          </Row>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
