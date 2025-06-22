@@ -64,3 +64,14 @@ main {
   max-width: 800px;
   margin: auto;
 }
+.app-container {
+  background-color: #f4fdf7; /* soft greenish tone */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+}
