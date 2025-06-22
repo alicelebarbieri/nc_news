@@ -2,7 +2,7 @@ Welcome to the frontend of the **NC News** application! 📰
 This React-based single-page app allows users to browse articles by topic, view article details, read and post comments, and sort content by date, votes, or comment count.
 
 🌐 Live Deployment
-👉 Check out the live site here (https://stellular-platypus-708625.netlify.app)
+👉 Check out the live site here (https://nccnews.netlify.app/)
 
 📋 Project Overview
 This project is a news website built with React and powered by a RESTful API. It includes:
