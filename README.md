@@ -21,7 +21,7 @@ Back End Repository
 To run the project on your machine:
 
 1. Clone the repository
-git clone https://github.com/alicelebarbieri/nc-news
+git clone 
 
 2. Move into the project folder
 cd nc-news-frontend
